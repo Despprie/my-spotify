@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from 'react';
-
-import EventEmitter, { Events } from 'utils/EventEmitter';
+import EventEmitter, { Events } from '~/utils/EventEmitter';
 
 export const useListener = <Event extends keyof Events>(event: Event, callback: Events[Event]) => {
     const events = EventEmitter.getInstance();
