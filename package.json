@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "build:css": "tailwindcss -o src/styles/tailwind.css",
         "start": "next start",
@@ -20,6 +20,7 @@
         "@types/react": "18.0.9",
         "@types/react-dom": "18.0.5",
         "autoprefixer": "^10.4.7",
+        "cross-env": "^7.0.3",
         "eslint": "8.16.0",
         "eslint-config-next": "12.1.6",
         "postcss": "^8.4.14",
