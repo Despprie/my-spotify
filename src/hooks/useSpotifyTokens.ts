@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react';
 import shallow from 'zustand/shallow';
 import { useEmitter, useListener } from '~/hooks/useEventEmitter';
 import { SpotifyTokens } from '~/pages/api/signin';
-import useSpotifyTokensStore from '~/pages/store/SpotifyTokens';
+import useSpotifyTokensStore from '~/store/SpotifyTokens';
 
 const refreshAccessToken = async (refresh_token: string) => {
     const response = await axios.post<Omit<SpotifyTokens, 'refresh_token'>>('/api/refresh', { refresh_token });

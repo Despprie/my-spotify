@@ -20,7 +20,8 @@
             "~/styles/*": ["styles/*"],
             "~/components/*": ["components/*"],
             "~/hooks/*": ["hooks/*"],
-            "~/store/*": ["store/*"]
+            "~/store/*": ["store/*"],
+            "~/utils/*": ["utils/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

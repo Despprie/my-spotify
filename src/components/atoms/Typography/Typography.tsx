@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import Paragraph from '~/components/atom/Typography/Paragraph';
-import Subtitle from '~/components/atom/Typography/Subtitle';
-import Title from '~/components/atom/Typography/Title';
+import Paragraph from '~/components/atoms/Typography/Paragraph';
+import Subtitle from '~/components/atoms/Typography/Subtitle';
+import Title from '~/components/atoms/Typography/Title';
 
 type TypographyProps = React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement> & {
     theme?: 'title' | 'subtitle' | 'paragraph';

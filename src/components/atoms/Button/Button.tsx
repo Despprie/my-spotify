@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import Primary from '~/components/atom/Button/Primary';
+import Primary from '~/components/atoms/Button/Primary';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { theme?: 'primary'; title?: string };
 
