@@ -30,8 +30,21 @@ const useSpotifyTokensStore = create(
             setExpiresIn: (expiresIn: number) => set({ expiresIn }),
             setScope: (scope: string) => set({ scope }),
             setTokenType: (tokenType: string) => set({ tokenType }),
-            setStore: (store: SpotifyTokens) => set(store),
-            refreshStore: (store: Omit<SpotifyTokens, 'refresh_token'>) => set(store)
+            setStore: ({ access_token, refresh_token, expires_in, scope, token_type }: SpotifyTokens) =>
+                set({
+                    accessToken: access_token,
+                    refreshToken: refresh_token,
+                    expiresIn: expires_in,
+                    scope,
+                    tokenType: token_type
+                }),
+            refreshStore: ({ access_token, expires_in, scope, token_type }: Omit<SpotifyTokens, 'refresh_token'>) =>
+                set({
+                    accessToken: access_token,
+                    expiresIn: expires_in,
+                    scope,
+                    tokenType: token_type
+                })
         }),
         { name: 'my-spotify-tokens' }
     )

@@ -28,12 +28,12 @@ describe('SignIn', () => {
 
     it('should return Spotify tokens as props when code is a string', async () => {
         const response = await getServerSideProps({ query: { code: 'code' } } as any);
-        expect(response).toEqual(expect.objectContaining({ props: { tokens: fakeSpotifyTokens } }));
+        expect(response).toEqual(expect.objectContaining({ props: { spotifyTokens: fakeSpotifyTokens } }));
     });
 
     it('should return Spotify tokens as props when code is an array', async () => {
         const response = await getServerSideProps({ query: { code: ['code'] } } as any);
-        expect(response).toEqual(expect.objectContaining({ props: { tokens: fakeSpotifyTokens } }));
+        expect(response).toEqual(expect.objectContaining({ props: { spotifyTokens: fakeSpotifyTokens } }));
     });
 
     it('should do nothing due to sign in failed', async () => {

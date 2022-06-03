@@ -27,15 +27,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
     try {
         const code = Array.isArray(query.code) ? query.code[0] : query.code;
-        const tokens = await signInToSpotify(code, clientId, clientSecret, redirectUri);
+        const spotifyTokens = await signInToSpotify(code, clientId, clientSecret, redirectUri);
 
-        return {
-            props: { tokens },
-            redirect: {
-                permanent: false,
-                destination: '/'
-            }
-        };
+        return { props: { spotifyTokens } };
     } catch {
         return { props: {} };
     }

@@ -13,7 +13,14 @@ const refreshAccessToken = async (refresh_token: string) => {
 
 export const useSpotifyTokensStoreSetUp = (spotifyTokens: SpotifyTokens | undefined) => {
     const setStore = useSpotifyTokensStore(store => store.setStore);
-    useEffect(() => (spotifyTokens ? setStore(spotifyTokens) : undefined), [setStore, spotifyTokens]);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!spotifyTokens) return;
+
+        setStore(spotifyTokens);
+        router.replace('/');
+    }, [router, setStore, spotifyTokens]);
 };
 
 export const useRefreshSpotifyTokens = () => {
