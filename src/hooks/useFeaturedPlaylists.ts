@@ -3,10 +3,40 @@ import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import spotify from '~/utils/spotify';
 
+export type SpotifyImage = {
+    url: string;
+    width: number;
+    height: number;
+};
+
+export type SpotifyUser = {
+    id: string;
+    display_name: string;
+    external_urls: { spotify: string };
+    href: string;
+    type: string;
+    uri: string;
+};
+
+export type SpotifyPlaylistItem = {
+    id: string;
+    name: string;
+    description: string;
+    images: SpotifyImage[];
+    owner: SpotifyUser;
+    tracks: { href: string };
+    external_urls: { spotify: string };
+    href: string;
+    collaborative: boolean;
+    uri: string;
+    type: string;
+    snapshot_id: string;
+};
+
 export type SpotifyFeaturedPlaylist = {
     playlists: {
         href: string;
-        items: [{}];
+        items: SpotifyPlaylistItem[];
         limit: number;
         next: string;
         offset: number;
@@ -16,8 +46,8 @@ export type SpotifyFeaturedPlaylist = {
     message: 'string';
 };
 
-const getFeaturedPlaylists = async (accessToken: string, offset: number = 0, limit: number = 20) => {
-    const response = await spotify.get<SpotifyFeaturedPlaylist>(`/browse/featured-playlists/${offset}/${limit}`, {
+const getFeaturedPlaylists = async (accessToken: string) => {
+    const response = await spotify.get<SpotifyFeaturedPlaylist>('/browse/featured-playlists/', {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
 

@@ -10,7 +10,7 @@ import '~/styles/globals.css';
 import '~/styles/tailwind.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const queryClient = useRef(new QueryClient());
+    const queryClient = useRef(new QueryClient({ defaultOptions: { queries: { retry: 0 } } }));
 
     useSpotifyTokensStoreSetUp(pageProps.spotifyTokens);
     useRefreshSpotifyTokens();
