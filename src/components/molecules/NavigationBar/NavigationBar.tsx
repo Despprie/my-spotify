@@ -9,7 +9,7 @@ const NavigationBar = () => {
     const activeScreen = useMemo(() => router.pathname.split('/')[1], [router.pathname]);
 
     return (
-        <nav className='flex items-center justify-around border-t-[1px] border-zinc-700 bg-zinc-800 py-2'>
+        <nav className='flex items-center justify-around border-t-[1px] border-zinc-700 bg-zinc-800 py-2 text-green-500'>
             <Link href='/'>
                 <button className='flex flex-col items-center'>
                     <Icon theme='home' className={`text-2xl ${activeScreen ? 'text-gray-500' : ''}`} />

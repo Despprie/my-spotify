@@ -5,4 +5,10 @@ const spotify = axios.create({
     headers: { 'Content-Type': 'application/json' }
 });
 
+export type SpotifyImage = {
+    url: string;
+    width: number;
+    height: number;
+};
+
 export default spotify;

@@ -1,13 +1,7 @@
 import { useQuery } from 'react-query';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
-import spotify from '~/utils/spotify';
-
-export type SpotifyImage = {
-    url: string;
-    width: number;
-    height: number;
-};
+import spotify, { SpotifyImage } from '~/utils/spotify';
 
 export type SpotifyUser = {
     id: string;
@@ -46,10 +40,11 @@ export type SpotifyFeaturedPlaylist = {
     message: 'string';
 };
 
-const getFeaturedPlaylists = async (accessToken: string) => {
-    const response = await spotify.get<SpotifyFeaturedPlaylist>('/browse/featured-playlists/', {
-        headers: { Authorization: `Bearer ${accessToken}` }
-    });
+const getFeaturedPlaylists = async (accessToken: string, limit: number = 20, offset: number = 0) => {
+    const response = await spotify.get<SpotifyFeaturedPlaylist>(
+        `/browse/featured-playlists?limit=${limit}&offset=${offset}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
 
     return response.data;
 };
