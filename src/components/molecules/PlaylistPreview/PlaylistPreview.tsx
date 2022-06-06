@@ -5,18 +5,18 @@ import { SpotifyPlaylistItem } from '~/hooks/useFeaturedPlaylists';
 type PlaylistPreviewProps = { playlist: SpotifyPlaylistItem };
 
 const PlaylistPreview = ({ playlist }: PlaylistPreviewProps) => (
-    <div className='w-48 rounded-md'>
+    <div className='w-32 rounded-md'>
         <Image
             src={playlist.images[0].url}
-            width={30}
-            height={30}
+            width={20}
+            height={20}
             alt={playlist.name}
             layout='responsive'
-            className='rounded-md'
+            className='rounded-xl'
         />
         <Typography
             title={playlist.name}
-            className='mt-2 overflow-x-hidden overflow-ellipsis whitespace-nowrap text-base font-medium text-gray-500'
+            className='mt-1 overflow-x-hidden overflow-ellipsis whitespace-nowrap text-sm'
         />
     </div>
 );
