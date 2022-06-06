@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Typography from '~/components/atoms/Typography';
 import { SpotifyPlaylistItem } from '~/hooks/useFeaturedPlaylists';
+import { SpotifyUserPlaylistItem } from '~/hooks/useUserPlaylists';
 
-type PlaylistPreviewProps = { playlist: SpotifyPlaylistItem };
+type PlaylistPreviewProps = { playlist: SpotifyPlaylistItem | SpotifyUserPlaylistItem };
 
 const PlaylistPreview = ({ playlist }: PlaylistPreviewProps) => (
     <div className='w-32'>

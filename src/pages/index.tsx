@@ -4,6 +4,7 @@ import Typography from '~/components/atoms/Typography';
 import NavigationBar from '~/components/molecules/NavigationBar';
 import FeaturedPlaylistsSection from '~/components/organisms/FeaturedPlaylistsSection';
 import FollowedArtistsSection from '~/components/organisms/FollowedArtistsSection';
+import UserPlaylistsSection from '~/components/organisms/UserPlaylistsSection';
 
 const Home: NextPage = () => (
     <>
@@ -20,9 +21,8 @@ const Home: NextPage = () => (
                 </div>
 
                 <FollowedArtistsSection />
+                <UserPlaylistsSection />
                 <FeaturedPlaylistsSection />
-
-                {/* ... */}
             </div>
             <NavigationBar />
         </main>

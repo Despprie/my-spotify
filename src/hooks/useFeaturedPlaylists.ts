@@ -1,30 +1,21 @@
 import { useQuery } from 'react-query';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
-import spotify, { SpotifyImage } from '~/utils/spotify';
-
-export type SpotifyUser = {
-    id: string;
-    display_name: string;
-    external_urls: { spotify: string };
-    href: string;
-    type: string;
-    uri: string;
-};
+import spotify, { SpotifyImage, SpotifyUser } from '~/utils/spotify';
 
 export type SpotifyPlaylistItem = {
     id: string;
     name: string;
     description: string;
-    images: SpotifyImage[];
-    owner: SpotifyUser;
-    tracks: { href: string };
-    external_urls: { spotify: string };
-    href: string;
     collaborative: boolean;
-    uri: string;
-    type: string;
+    images: SpotifyImage[];
+    tracks: { href: string };
+    owner: SpotifyUser;
+    external_urls: { spotify: string };
     snapshot_id: string;
+    uri: string;
+    href: string;
+    type: string;
 };
 
 export type SpotifyFeaturedPlaylist = {

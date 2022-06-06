@@ -1,25 +1,25 @@
 import { v4 as uuid } from 'uuid';
 import Icon from '~/components/atoms/Icon';
 import Typography from '~/components/atoms/Typography';
-import ArtistPreview from '~/components/molecules/ArtistPreview';
-import useFollowedArtists from '~/hooks/useFollowedArtists';
+import PlaylistPreview from '~/components/molecules/PlaylistPreview';
+import useUserPlaylists from '~/hooks/useUserPlaylists';
 
-const FollowedArtistsSection = () => {
-    const followedArtistsQuery = useFollowedArtists();
+const UserPlaylistsSection = () => {
+    const userPlayListsQuery = useUserPlaylists();
 
     return (
         <div>
             <div className='mb-2 flex items-center justify-between px-2'>
-                <Typography theme='subtitle' title='Artists you follow' />
+                <Typography theme='subtitle' title='Your Playlists' />
                 <button>
                     <Icon theme='cheveron' />
                 </button>
             </div>
             <ul className='disable-scrollbar flex w-full gap-2 overflow-x-auto px-2 py-1'>
-                {followedArtistsQuery.isSuccess &&
-                    followedArtistsQuery.data.items.map(artist => (
+                {userPlayListsQuery.isSuccess &&
+                    userPlayListsQuery.data.items.map(playlist => (
                         <li key={uuid()}>
-                            <ArtistPreview {...{ artist }} />
+                            <PlaylistPreview {...{ playlist }} />
                         </li>
                     ))}
             </ul>
@@ -27,4 +27,4 @@ const FollowedArtistsSection = () => {
     );
 };
 
-export default FollowedArtistsSection;
+export default UserPlaylistsSection;
