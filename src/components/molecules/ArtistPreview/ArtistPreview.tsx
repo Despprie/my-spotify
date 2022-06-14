@@ -12,7 +12,7 @@ const ArtistPreview = ({ artist }: ArtistsPreviewProps) => (
             height={10}
             alt={artist.name}
             layout='responsive'
-            className='rounded-full'
+            className='rounded-full bg-zinc-700'
         />
         <Typography
             title={artist.name}
