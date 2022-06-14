@@ -24,6 +24,7 @@ const Home: NextPage = () => (
                 <UserPlaylistsSection />
                 <FeaturedPlaylistsSection />
             </div>
+
             <NavigationBar />
         </main>
     </>

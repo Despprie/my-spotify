@@ -1,27 +1,12 @@
 import { useQuery } from 'react-query';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
-import spotify, { SpotifyImage, SpotifyUser } from '~/utils/spotify';
+import { spotify, SpotifyPlaylist } from '~/utils/spotify';
 
-export type SpotifyPlaylistItem = {
-    id: string;
-    name: string;
-    description: string;
-    collaborative: boolean;
-    images: SpotifyImage[];
-    tracks: { href: string };
-    owner: SpotifyUser;
-    external_urls: { spotify: string };
-    snapshot_id: string;
-    uri: string;
-    href: string;
-    type: string;
-};
-
-export type SpotifyFeaturedPlaylist = {
+export type SpotifyFeaturedPlaylistResponse = {
     playlists: {
         href: string;
-        items: SpotifyPlaylistItem[];
+        items: SpotifyPlaylist[];
         limit: number;
         next: string;
         offset: number;
@@ -32,7 +17,7 @@ export type SpotifyFeaturedPlaylist = {
 };
 
 const getFeaturedPlaylists = async (accessToken: string, limit: number = 20, offset: number = 0) => {
-    const response = await spotify.get<SpotifyFeaturedPlaylist>(
+    const response = await spotify.get<SpotifyFeaturedPlaylistResponse>(
         `/browse/featured-playlists?limit=${limit}&offset=${offset}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
     );

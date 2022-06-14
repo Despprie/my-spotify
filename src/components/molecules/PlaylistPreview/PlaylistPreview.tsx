@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Typography from '~/components/atoms/Typography';
-import { SpotifyPlaylistItem } from '~/hooks/useFeaturedPlaylists';
-import { SpotifyUserPlaylistItem } from '~/hooks/useUserPlaylists';
+import { SpotifyPlaylist } from '~/utils/spotify';
 
-type PlaylistPreviewProps = { playlist: SpotifyPlaylistItem | SpotifyUserPlaylistItem };
+type PlaylistPreviewProps = { playlist: SpotifyPlaylist };
 
 const PlaylistPreview = ({ playlist }: PlaylistPreviewProps) => (
     <div className='w-32'>
@@ -13,7 +12,7 @@ const PlaylistPreview = ({ playlist }: PlaylistPreviewProps) => (
             height={20}
             alt={playlist.name}
             layout='responsive'
-            className='rounded-xl'
+            className='rounded-xl bg-zinc-700'
         />
         <Typography
             title={playlist.name}

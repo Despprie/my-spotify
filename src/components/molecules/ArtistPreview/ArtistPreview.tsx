@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Typography from '~/components/atoms/Typography';
-import { SpotifyArtistItem } from '~/hooks/useFollowedArtists';
+import { SpotifyArtist } from '~/utils/spotify';
 
-type ArtistsPreviewProps = { artist: SpotifyArtistItem };
+type ArtistsPreviewProps = { artist: SpotifyArtist };
 
 const ArtistPreview = ({ artist }: ArtistsPreviewProps) => (
     <div className='w-24'>

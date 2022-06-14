@@ -1,25 +1,12 @@
 import { useQuery } from 'react-query';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
-import spotify, { SpotifyImage } from '~/utils/spotify';
+import { spotify, SpotifyArtist } from '~/utils/spotify';
 
-export type SpotifyArtistItem = {
-    id: string;
-    name: string;
-    images: SpotifyImage[];
-    followers: { href: string; total: number };
-    genres: string[];
-    popularity: number;
-    external_urls: { spotify: string };
-    href: string;
-    uri: string;
-    type: string;
-};
-
-export type SpotifyArtist = {
+export type SpotifyArtistResponse = {
     artists: {
         href: string;
-        items: SpotifyArtistItem[];
+        items: SpotifyArtist[];
         limit: number;
         next: string;
         total: number;
@@ -27,7 +14,7 @@ export type SpotifyArtist = {
 };
 
 const getFollowedArtists = async (accessToken: string, limit: number = 20) => {
-    const response = await spotify.get<SpotifyArtist>(`/me/following?type=artist&limit${limit}`, {
+    const response = await spotify.get<SpotifyArtistResponse>(`/me/following?type=artist&limit=${limit}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
 
