@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import { spotify, SpotifyImage, SpotifyUser } from '~/utils/spotify';
 
@@ -20,11 +19,8 @@ const getCurrentUser = async (accessToken: string) => {
 const useCurrentUserQuery = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
-    const invalidateSpotifyTokens = useInvalidateSpotifyTokens();
-
     const currentUserQuery = useQuery(['current-user', accessToken], () => getCurrentUser(accessToken!), {
-        enabled: !!accessToken,
-        onError: invalidateSpotifyTokens
+        enabled: !!accessToken
     });
 
     return currentUserQuery;

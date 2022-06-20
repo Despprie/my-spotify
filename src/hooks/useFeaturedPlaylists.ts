@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import { spotify, SpotifyPlaylist } from '~/utils/spotify';
 
@@ -27,15 +26,13 @@ const getFeaturedPlaylists = async (accessToken: string, limit: number = 20, off
 
 const useFeaturedPlaylists = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
-    const invalidateSpotifyTokens = useInvalidateSpotifyTokens();
 
     const featuredPlayListsQuery = useQuery(
         ['featured-playlist', accessToken],
         () => getFeaturedPlaylists(accessToken!),
         {
             enabled: !!accessToken,
-            select: ({ playlists }) => playlists,
-            onError: invalidateSpotifyTokens
+            select: ({ playlists }) => playlists
         }
     );
 

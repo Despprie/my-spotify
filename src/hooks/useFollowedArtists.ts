@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import { spotify, SpotifyArtist } from '~/utils/spotify';
 
@@ -23,12 +22,10 @@ const getFollowedArtists = async (accessToken: string, limit: number = 20) => {
 
 const useFollowedArtists = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
-    const invalidateSpotifyTokens = useInvalidateSpotifyTokens();
 
     const followedArtistsQuery = useQuery(['followed-artists', accessToken], () => getFollowedArtists(accessToken!), {
         enabled: !!accessToken,
-        select: ({ artists }) => artists,
-        onError: invalidateSpotifyTokens
+        select: ({ artists }) => artists
     });
 
     return followedArtistsQuery;
