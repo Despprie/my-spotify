@@ -1,2 +1,2 @@
-export * from './PlaylistPreview';
-export { default } from './PlaylistPreview';
+export * from './PlaylistAndAlbumPreview';
+export { default } from './PlaylistAndAlbumPreview';

@@ -4,6 +4,7 @@ import NavigationBar from '~/components/molecules/NavigationBar';
 import FeaturedPlaylistsSection from '~/components/organisms/FeaturedPlaylistsSection';
 import FollowedArtistsSection from '~/components/organisms/FollowedArtistsSection';
 import HomeHeader from '~/components/organisms/HomeHeader';
+import NewReleasesSection from '~/components/organisms/NewReleasesSection';
 import UserPlaylistsSection from '~/components/organisms/UserPlaylistsSection';
 
 const Home: NextPage = () => (
@@ -19,6 +20,7 @@ const Home: NextPage = () => (
 
                 <FollowedArtistsSection />
                 <UserPlaylistsSection />
+                <NewReleasesSection />
                 <FeaturedPlaylistsSection />
             </div>
 

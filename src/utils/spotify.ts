@@ -44,3 +44,14 @@ export type SpotifyArtist = {
     uri: string;
     type: string;
 };
+
+export type SpotifyAlbum = {
+    id: string;
+    artists: SpotifyArtist[];
+    images: SpotifyImage[];
+    name: string;
+    release_date: string;
+    total_tracks: number;
+    album_type: string;
+    type: string;
+};
