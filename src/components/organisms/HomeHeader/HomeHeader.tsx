@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Typography from '~/components/atoms/Typography';
-import useCurrentUserQuery from '~/hooks/useCurrentUserQuery';
+import useCurrentUser from '~/hooks/useCurrentUser';
 
 const HomeHeader = () => {
-    const currentUserQuery = useCurrentUserQuery();
+    const currentUserQuery = useCurrentUser();
 
     return (
         <header className='mb-2 grid grid-cols-[1fr_auto] px-2'>
