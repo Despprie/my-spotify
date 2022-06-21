@@ -5,6 +5,7 @@ import FeaturedPlaylistsSection from '~/components/organisms/FeaturedPlaylistsSe
 import FollowedArtistsSection from '~/components/organisms/FollowedArtistsSection';
 import HomeHeader from '~/components/organisms/HomeHeader';
 import NewReleasesSection from '~/components/organisms/NewReleasesSection';
+import RecommendationsSection from '~/components/organisms/RecommendationsSection';
 import UserPlaylistsSection from '~/components/organisms/UserPlaylistsSection';
 
 const Home: NextPage = () => (
@@ -20,6 +21,7 @@ const Home: NextPage = () => (
 
                 <FollowedArtistsSection />
                 <UserPlaylistsSection />
+                <RecommendationsSection />
                 <NewReleasesSection />
                 <FeaturedPlaylistsSection />
             </div>

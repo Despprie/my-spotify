@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import PlaylistAndAlbumPreview from '~/components/molecules/PlaylistPreview';
+import SectionItemPreview from '~/components/molecules/SectionPreview';
 import HomeSection from '~/components/template/HomeSection';
 import useNewReleases from '~/hooks/useNewReleases';
 
@@ -11,7 +11,7 @@ const NewReleasesSection = () => {
             {newReleasesQuery.isSuccess &&
                 newReleasesQuery.data.items.map(album => (
                     <li key={uuid()}>
-                        <PlaylistAndAlbumPreview item={album} />
+                        <SectionItemPreview item={album} />
                     </li>
                 ))}
         </HomeSection>

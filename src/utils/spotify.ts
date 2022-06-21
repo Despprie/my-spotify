@@ -55,3 +55,17 @@ export type SpotifyAlbum = {
     album_type: string;
     type: string;
 };
+
+export type SpotifyTrack = {
+    album: SpotifyAlbum;
+    artists: SpotifyArtist[];
+    duration_ms: number;
+    explicit: boolean;
+    href: string;
+    id: string;
+    name: string;
+    popularity: number;
+    preview_url: string;
+    track_number: number;
+    type: string;
+};

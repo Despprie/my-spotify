@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import PlaylistAndAlbumPreview from '~/components/molecules/PlaylistPreview';
+import SectionItemPreview from '~/components/molecules/SectionPreview';
 import HomeSection from '~/components/template/HomeSection';
 import useFeaturedPlaylists from '~/hooks/useFeaturedPlaylists';
 
@@ -11,7 +11,7 @@ const FeaturedPlaylistsSection = () => {
             {featuredPlayListsQuery.isSuccess &&
                 featuredPlayListsQuery.data.items.map(playlist => (
                     <li key={uuid()}>
-                        <PlaylistAndAlbumPreview item={playlist} />
+                        <SectionItemPreview item={playlist} />
                     </li>
                 ))}
         </HomeSection>
