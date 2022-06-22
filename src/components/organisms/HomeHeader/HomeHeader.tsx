@@ -10,7 +10,7 @@ const HomeHeader = () => {
             <div>
                 <Typography
                     theme='title'
-                    title={`Welcome back ${currentUserQuery.data?.id}!`}
+                    title={`Welcome back${currentUserQuery.isSuccess ? ' ' + currentUserQuery.data.id : ''}!`}
                     className='font-semibold'
                 />
                 <Typography title="Let's listen to something cool today" className='text-sm text-gray-500' />

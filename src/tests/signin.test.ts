@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import * as Server from '~/pages/api/signin';
 import { getServerSideProps } from '~/pages/signin';
 

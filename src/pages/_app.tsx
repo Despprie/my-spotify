@@ -11,7 +11,7 @@ import '~/styles/globals.css';
 import '~/styles/tailwind.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const queryClient = useRef(new QueryClient({ defaultOptions: { queries: { retry: 0 } } }));
+    const queryClient = useRef(new QueryClient({ defaultOptions: { queries: { retry: false } } }));
 
     const invalidateSpotifyTokens = useInvalidateSpotifyTokens();
     queryClient.current.setQueryDefaults(['spotify'], { onError: invalidateSpotifyTokens });
