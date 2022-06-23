@@ -14,7 +14,7 @@ export type SpotifyNewReleasesResponse = {
     };
 };
 
-const getNewReleases = async (accessToken: string, limit: number = 20, offset: number = 0) => {
+const getNewReleases = async (accessToken: string, limit: number, offset: number) => {
     const response = await spotify.get<SpotifyNewReleasesResponse>(
         `/browse/new-releases?limit=${limit}&offset=${offset}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
@@ -23,13 +23,17 @@ const getNewReleases = async (accessToken: string, limit: number = 20, offset: n
     return response.data;
 };
 
-const useNewReleases = () => {
+const useNewReleases = (limit: number = 20, offset: number = 0) => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
-    const newReleasesQuery = useQuery(['spotify', 'new-releases', accessToken], () => getNewReleases(accessToken!), {
-        enabled: !!accessToken,
-        select: ({ albums }) => albums
-    });
+    const newReleasesQuery = useQuery(
+        ['spotify', 'new-releases', limit, offset, accessToken],
+        () => getNewReleases(accessToken!, limit, offset),
+        {
+            enabled: !!accessToken,
+            select: ({ albums }) => albums
+        }
+    );
 
     return newReleasesQuery;
 };

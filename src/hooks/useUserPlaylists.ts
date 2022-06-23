@@ -11,7 +11,7 @@ export type SpotifyUserPlaylistResponse = {
     total: number;
 };
 
-const getUserPlaylists = async (accessToken: string, limit: number = 20, offset: number = 0) => {
+const getUserPlaylists = async (accessToken: string, limit: number, offset: number) => {
     const response = await spotify.get<SpotifyUserPlaylistResponse>(`/me/playlists?limit=${limit}&offset=${offset}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
@@ -19,15 +19,13 @@ const getUserPlaylists = async (accessToken: string, limit: number = 20, offset:
     return response.data;
 };
 
-const useUserPlaylists = () => {
+const useUserPlaylists = (limit: number = 20, offset: number = 0) => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
     const featuredPlayListsQuery = useQuery(
-        ['spotify', 'user-playlist', accessToken],
-        () => getUserPlaylists(accessToken!),
-        {
-            enabled: !!accessToken
-        }
+        ['spotify', 'user-playlist', limit, offset, accessToken],
+        () => getUserPlaylists(accessToken!, limit, offset),
+        { enabled: !!accessToken }
     );
 
     return featuredPlayListsQuery;

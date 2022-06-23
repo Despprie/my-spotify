@@ -24,7 +24,7 @@ describe('HomeHeader', () => {
     it('should render a hydrated header', () => {
         useCurrentUserMock.mockReturnValue({
             isSuccess: true,
-            data: { id: 'foobar', images: [{ url: IMAGE_URL }] }
+            data: { id: 'foobar', images: [{ url: IMAGE_URL }], followers: { total: 123 } }
         } as ReturnType<typeof useCurrentUser>);
 
         const { getByText, queryByAltText } = render(<HomeHeader />);

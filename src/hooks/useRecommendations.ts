@@ -27,12 +27,7 @@ export type SpotifyRecommendationResponse = {
     tracks: SpotifyTrack[];
 };
 
-const getRecommendations = async (
-    accessToken: string,
-    artistsSeeds: string,
-    tracksSeeds: string,
-    limit: number = 20
-) => {
+const getRecommendations = async (accessToken: string, artistsSeeds: string, tracksSeeds: string, limit: number) => {
     // spotify recommendations api endpoint requires a maximum of 5 seeds
     // we use 1 genre from the generated genre seeds
     const genresSeed = _.shuffle((await getGenreSeeds(accessToken)).genres)[0];
@@ -51,7 +46,7 @@ const getRandomSeeds = <T extends { id: string }>(seed: T[], limit: number) =>
         .map(item => item.id)
         .join(',');
 
-const useRecommendations = () => {
+const useRecommendations = (limit: number = 20) => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
     const userTopArtistsQuery = useUserTopItems('artists');
@@ -72,8 +67,8 @@ const useRecommendations = () => {
     );
 
     const recommendationQuery = useQuery(
-        ['spotify', 'recommendation', artistsSeeds, tracksSeeds, accessToken],
-        () => getRecommendations(accessToken!, artistsSeeds!, tracksSeeds!),
+        ['spotify', 'recommendation', artistsSeeds, tracksSeeds, limit, accessToken],
+        () => getRecommendations(accessToken!, artistsSeeds!, tracksSeeds!, limit),
         {
             enabled: !!(accessToken && artistsSeeds && tracksSeeds),
             select: ({ tracks }) => tracks,

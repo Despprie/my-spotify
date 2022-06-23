@@ -12,7 +12,7 @@ export type SpotifyArtistResponse = {
     };
 };
 
-const getFollowedArtists = async (accessToken: string, limit: number = 20) => {
+const getFollowedArtists = async (accessToken: string, limit: number) => {
     const response = await spotify.get<SpotifyArtistResponse>(`/me/following?type=artist&limit=${limit}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
@@ -20,12 +20,12 @@ const getFollowedArtists = async (accessToken: string, limit: number = 20) => {
     return response.data;
 };
 
-const useFollowedArtists = () => {
+const useFollowedArtists = (limit: number = 20) => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
     const followedArtistsQuery = useQuery(
-        ['spotify', 'followed-artists', accessToken],
-        () => getFollowedArtists(accessToken!),
+        ['spotify', 'followed-artists', limit, accessToken],
+        () => getFollowedArtists(accessToken!, limit),
         {
             enabled: !!accessToken,
             select: ({ artists }) => artists

@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import ArtistPreview from '~/components/molecules/ArtistPreview';
+import SectionPreview from '~/components/molecules/SectionPreview';
 import HomeSection from '~/components/template/HomeSection';
 import useFollowedArtists from '~/hooks/useFollowedArtists';
 
@@ -11,7 +11,7 @@ const FollowedArtistsSection = () => {
             {followedArtistsQuery.isSuccess &&
                 followedArtistsQuery.data.items.map(artist => (
                     <li key={uuid()}>
-                        <ArtistPreview {...{ artist }} />
+                        <SectionPreview item={artist} />
                     </li>
                 ))}
         </HomeSection>
