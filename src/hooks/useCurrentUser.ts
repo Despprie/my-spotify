@@ -19,7 +19,7 @@ const getCurrentUser = async (accessToken: string) => {
 const useCurrentUser = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
-    const currentUserQuery = useQuery(['current-user', accessToken], () => getCurrentUser(accessToken!), {
+    const currentUserQuery = useQuery(['spotify', 'current-user', accessToken], () => getCurrentUser(accessToken!), {
         enabled: !!accessToken
     });
 

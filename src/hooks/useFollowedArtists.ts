@@ -23,10 +23,14 @@ const getFollowedArtists = async (accessToken: string, limit: number = 20) => {
 const useFollowedArtists = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
-    const followedArtistsQuery = useQuery(['followed-artists', accessToken], () => getFollowedArtists(accessToken!), {
-        enabled: !!accessToken,
-        select: ({ artists }) => artists
-    });
+    const followedArtistsQuery = useQuery(
+        ['spotify', 'followed-artists', accessToken],
+        () => getFollowedArtists(accessToken!),
+        {
+            enabled: !!accessToken,
+            select: ({ artists }) => artists
+        }
+    );
 
     return followedArtistsQuery;
 };

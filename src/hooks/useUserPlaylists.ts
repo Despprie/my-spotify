@@ -22,9 +22,13 @@ const getUserPlaylists = async (accessToken: string, limit: number = 20, offset:
 const useUserPlaylists = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
-    const featuredPlayListsQuery = useQuery(['user-playlist', accessToken], () => getUserPlaylists(accessToken!), {
-        enabled: !!accessToken
-    });
+    const featuredPlayListsQuery = useQuery(
+        ['spotify', 'user-playlist', accessToken],
+        () => getUserPlaylists(accessToken!),
+        {
+            enabled: !!accessToken
+        }
+    );
 
     return featuredPlayListsQuery;
 };

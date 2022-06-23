@@ -34,7 +34,7 @@ const getRecommendations = async (
     limit: number = 20
 ) => {
     // spotify recommendations api endpoint requires a maximum of 5 seeds
-    // we use 1 genres from the generated genre seeds
+    // we use 1 genre from the generated genre seeds
     const genresSeed = _.shuffle((await getGenreSeeds(accessToken)).genres)[0];
 
     const response = await spotify.get<SpotifyRecommendationResponse>(

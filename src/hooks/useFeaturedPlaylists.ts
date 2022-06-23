@@ -28,7 +28,7 @@ const useFeaturedPlaylists = () => {
     const accessToken = useSpotifyTokensStore(store => store.accessToken);
 
     const featuredPlayListsQuery = useQuery(
-        ['featured-playlist', accessToken],
+        ['spotify', 'featured-playlist', accessToken],
         () => getFeaturedPlaylists(accessToken!),
         {
             enabled: !!accessToken,
