@@ -1,10 +1,10 @@
 import { IconBaseProps } from 'react-icons';
 import { AiFillHome, AiOutlineSearch } from 'react-icons/ai';
 import { BiLibrary } from 'react-icons/bi';
-import { BsChevronRight } from 'react-icons/bs';
+import { BsChevronRight, BsPlayFill } from 'react-icons/bs';
 import { FaSpotify } from 'react-icons/fa';
 
-type IconProps = IconBaseProps & { theme: 'spotify' | 'home' | 'search' | 'library' | 'cheveron' };
+type IconProps = IconBaseProps & { theme: 'spotify' | 'home' | 'search' | 'library' | 'cheveron' | 'play' };
 
 const Icon = ({ theme, ...otherProps }: IconProps) => {
     switch (theme) {
@@ -18,6 +18,8 @@ const Icon = ({ theme, ...otherProps }: IconProps) => {
             return <BiLibrary {...otherProps} />;
         case 'cheveron':
             return <BsChevronRight {...otherProps} />;
+        case 'play':
+            return <BsPlayFill {...otherProps} />;
         default:
             return null;
     }

@@ -10,7 +10,7 @@ const NavigationBar = () => {
     const activeScreen = useMemo(() => router.pathname.split('/')[1], [router.pathname]);
 
     return (
-        <nav className='flex items-center justify-around border-t-[1px] border-zinc-700 bg-zinc-800 py-2 text-green-500 lg:relative lg:col-[1/span_1] lg:row-[1/span_1] lg:w-72 lg:flex-col lg:items-start lg:justify-start lg:gap-5 lg:border-t-0 lg:border-r-[1px] lg:border-zinc-800 lg:bg-zinc-900 lg:py-7 lg:pl-14'>
+        <nav className='flex items-center justify-around border-t-[1px] border-zinc-700 bg-zinc-800 py-2 text-green-500 lg:relative lg:col-[1/span_1] lg:row-[1/span_1] lg:w-64 lg:flex-col lg:items-start lg:justify-start lg:gap-5 lg:border-t-0 lg:border-r-[1px] lg:border-zinc-800 lg:bg-zinc-900 lg:py-7 lg:pl-10'>
             <div className='mb-10 hidden items-center gap-10 lg:flex'>
                 <Icon theme='spotify' className='text-2xl' />
                 <Typography title='my-spotify' className='text-lg font-semibold text-white' />

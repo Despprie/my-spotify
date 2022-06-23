@@ -16,8 +16,8 @@ const Home: NextPage = () => (
 
         <HomeHeader />
 
-        <RecommendationsSection />
         <FollowedArtistsSection />
+        <RecommendationsSection />
         <UserPlaylistsSection />
         <NewReleasesSection />
         <FeaturedPlaylistsSection />
