@@ -15,13 +15,13 @@ const Home: NextPage = () => (
             <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        <main className='grid h-screen grid-cols-1 grid-rows-[1fr_auto] overflow-hidden bg-zinc-900 text-white'>
-            <div className='flex flex-col gap-4 overflow-y-auto py-2'>
+        <main className='grid h-screen grid-cols-1 grid-rows-[1fr_auto] bg-zinc-900 text-white lg:grid-cols-[auto_1fr] lg:grid-rows-1'>
+            <div className='flex flex-col gap-4 overflow-y-auto py-2 lg:col-[2/span_1]'>
                 <HomeHeader />
 
+                <RecommendationsSection />
                 <FollowedArtistsSection />
                 <UserPlaylistsSection />
-                <RecommendationsSection />
                 <NewReleasesSection />
                 <FeaturedPlaylistsSection />
             </div>

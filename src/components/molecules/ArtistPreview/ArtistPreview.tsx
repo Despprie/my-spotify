@@ -16,7 +16,7 @@ const ArtistPreview = ({ artist }: ArtistsPreviewProps) => (
         />
         <Typography
             title={artist.name}
-            className='mt-1 overflow-x-hidden overflow-ellipsis whitespace-nowrap text-center text-xs'
+            className='mt-1 overflow-x-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-light'
         />
     </div>
 );

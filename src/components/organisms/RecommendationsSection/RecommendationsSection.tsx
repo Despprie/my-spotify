@@ -7,7 +7,7 @@ const RecommendationsSection = () => {
     const recommendationsQuery = useRecommendations();
 
     return (
-        <HomeSection title='Recommendations'>
+        <HomeSection title='You may like'>
             {recommendationsQuery.isSuccess &&
                 recommendationsQuery.data.map(track => (
                     <li key={uuid()}>
