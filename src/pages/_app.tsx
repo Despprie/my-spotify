@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import PageLayout from '~/components/template/PageLayout';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import {
     useRefreshSpotifyTokens,
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <QueryClientProvider client={queryClient.current}>
             <Hydrate state={pageProps.dehydratedState}>
-                <Component {...pageProps} />
+                <PageLayout>
+                    <Component {...pageProps} />
+                </PageLayout>
             </Hydrate>
         </QueryClientProvider>
     );

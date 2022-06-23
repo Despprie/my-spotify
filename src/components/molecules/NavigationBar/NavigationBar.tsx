@@ -17,7 +17,7 @@ const NavigationBar = () => {
             </div>
 
             <Link href='/'>
-                <button className='group flex flex-col items-center lg:flex-row lg:gap-10'>
+                <a className='group flex flex-col items-center lg:flex-row lg:gap-10'>
                     <Icon
                         theme='home'
                         className={`text-2xl group-hover:lg:text-green-500 ${
@@ -37,11 +37,11 @@ const NavigationBar = () => {
                             className='absolute right-0 hidden h-8 w-2 rounded-[0.375rem_0_0_0.375rem] bg-green-500 lg:block'
                         />
                     )}
-                </button>
+                </a>
             </Link>
 
             <Link href='/search'>
-                <button className='group flex flex-col items-center lg:flex-row lg:gap-10'>
+                <a className='group flex flex-col items-center lg:flex-row lg:gap-10'>
                     <Icon
                         theme='search'
                         className={`text-2xl group-hover:lg:text-green-500 ${
@@ -61,11 +61,11 @@ const NavigationBar = () => {
                             className='absolute right-0 hidden h-8 w-2 rounded-[0.375rem_0_0_0.375rem] bg-green-500 lg:block'
                         />
                     )}
-                </button>
+                </a>
             </Link>
 
             <Link href='/library'>
-                <button className='group flex flex-col items-center lg:flex-row lg:gap-10'>
+                <a className='group flex flex-col items-center lg:flex-row lg:gap-10'>
                     <Icon
                         theme='library'
                         className={`text-2xl group-hover:lg:text-green-500 ${
@@ -85,7 +85,7 @@ const NavigationBar = () => {
                             className='absolute right-0 hidden h-8 w-2 rounded-[0.375rem_0_0_0.375rem] bg-green-500 lg:block'
                         />
                     )}
-                </button>
+                </a>
             </Link>
         </nav>
     );

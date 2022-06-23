@@ -1,12 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import NavigationBar from '~/components/molecules/NavigationBar';
-import FeaturedPlaylistsSection from '~/components/organisms/FeaturedPlaylistsSection';
-import FollowedArtistsSection from '~/components/organisms/FollowedArtistsSection';
 import HomeHeader from '~/components/organisms/HomeHeader';
-import NewReleasesSection from '~/components/organisms/NewReleasesSection';
-import RecommendationsSection from '~/components/organisms/RecommendationsSection';
-import UserPlaylistsSection from '~/components/organisms/UserPlaylistsSection';
 
 const Home: NextPage = () => (
     <>
@@ -15,19 +9,13 @@ const Home: NextPage = () => (
             <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        <main className='grid h-screen grid-cols-1 grid-rows-[1fr_auto] bg-zinc-900 text-white lg:grid-cols-[auto_1fr] lg:grid-rows-1'>
-            <div className='flex flex-col gap-4 overflow-y-auto py-2 lg:col-[2/span_1]'>
-                <HomeHeader />
+        <HomeHeader />
 
-                <RecommendationsSection />
-                <FollowedArtistsSection />
-                <UserPlaylistsSection />
-                <NewReleasesSection />
-                <FeaturedPlaylistsSection />
-            </div>
-
-            <NavigationBar />
-        </main>
+        {/* <RecommendationsSection />
+        <FollowedArtistsSection />
+        <UserPlaylistsSection />
+        <NewReleasesSection />
+        <FeaturedPlaylistsSection /> */}
     </>
 );
 
