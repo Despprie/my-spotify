@@ -29,8 +29,7 @@ const Player = () => {
                             />
                         </Link>
                         <TrackArtists artists={playbackState.data.item.artists} />
-
-                        <PlayerSlider />
+                        <PlayerSlider {...{ playbackState }} />
                     </div>
                 </CardContainer>
             )}

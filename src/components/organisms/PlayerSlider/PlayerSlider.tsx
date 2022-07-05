@@ -1,13 +1,17 @@
 import { animate, motion, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { UseQueryResult } from 'react-query';
 import Typography from '~/components/atoms/Typography';
 import {
     usePlaybackProgress,
     useSetPlayerPosition,
     useSyncHandleWithProgress
 } from '~/components/organisms/PlayerSlider/hooks';
+import { SpotifyPlaybackState } from '~/hooks/usePlaybackState';
 
-const PlayerSlider = () => {
+type PlayerSliderProps = { playbackState: UseQueryResult<SpotifyPlaybackState, unknown> };
+
+const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
     const HANDLE_SIZE = 16;
     const handle = useRef<HTMLDivElement>(null);
     const handleX = useMotionValue(0);
@@ -17,7 +21,7 @@ const PlayerSlider = () => {
     const constraints = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
 
-    const { progress, setProgress, duration, passedTime } = usePlaybackProgress();
+    const { progress, setProgress, duration, passedTime } = usePlaybackProgress(playbackState);
     const progressBar = useRef<HTMLDivElement>(null);
     useSyncHandleWithProgress(handleX, progress, progressBar);
 
