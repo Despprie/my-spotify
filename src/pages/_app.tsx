@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { useRef } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import PageLayout from '~/components/template/PageLayout';
 import useInvalidateSpotifyTokens from '~/hooks/useInvalidateSpotifyTokens';
 import {
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const invalidateSpotifyTokens = useInvalidateSpotifyTokens();
     queryClient.current.setQueryDefaults(['spotify'], { onError: invalidateSpotifyTokens });
+    queryClient.current.setMutationDefaults(['spotify'], { onError: invalidateSpotifyTokens });
 
     useSpotifyTokensStoreSetUp(pageProps.spotifyTokens);
     useRefreshSpotifyTokens();
@@ -27,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <PageLayout>
                     <Component {...pageProps} />
                 </PageLayout>
+                <ReactQueryDevtools />
             </Hydrate>
         </QueryClientProvider>
     );

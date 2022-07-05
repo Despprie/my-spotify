@@ -39,7 +39,7 @@ a {
 }
 
 .background-blur::after {
-    --size: 200px;
+    --size: 600px;
 
     content: '';
     position: absolute;
@@ -47,7 +47,7 @@ a {
     left: calc(var(--x, 0) * 1px - var(--size) / 2);
     width: var(--size);
     height: var(--size);
-    background: radial-gradient(#3f3f46, #3f3f4600 80%);
+    background: radial-gradient(#3f3f4688, #3f3f4600 30%);
     opacity: 0;
     transition: opacity 0.3s;
 }

@@ -15,8 +15,8 @@ export type SpotifyUser = {
 
 export type SpotifyImage = {
     url: string;
-    width: number;
-    height: number;
+    width: number | null;
+    height: number | null;
 };
 
 export type SpotifyPlaylist = {
@@ -68,4 +68,13 @@ export type SpotifyTrack = {
     preview_url: string;
     track_number: number;
     type: string;
+};
+
+export type SpotifyDevice = {
+    id: string;
+    is_active: boolean;
+    is_restricted: boolean;
+    name: string;
+    type: string;
+    volume_percent: number;
 };

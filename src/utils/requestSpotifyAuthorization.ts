@@ -1,7 +1,7 @@
 const requestSpotifyAuthorization = () => {
     const clientID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
     const redirectURI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
-    const scope = 'user-read-private user-read-email';
+    const scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state';
 
     if (!clientID || !redirectURI) return console.error('missing spotify client id or redirect uri');
 
