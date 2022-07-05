@@ -55,7 +55,7 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
     };
 
     return (
-        <div className='my-5'>
+        <div className='mt-5 mb-3'>
             <motion.div
                 className='relative flex h-1 w-full items-center rounded-full bg-gray-500'
                 style={{ background: handleBackground }}

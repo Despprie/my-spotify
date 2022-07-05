@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '~/components/atoms/Typography';
+import PlayerActions from '~/components/molecules/PlayerActions';
 import TrackArtists from '~/components/molecules/TrackArtists';
 import PlayerSlider from '~/components/organisms/PlayerSlider';
 import CardContainer from '~/components/template/CardContainer';
@@ -30,6 +31,7 @@ const Player = () => {
                         </Link>
                         <TrackArtists artists={playbackState.data.item.artists} />
                         <PlayerSlider {...{ playbackState }} />
+                        <PlayerActions {...{ playbackState }} />
                     </div>
                 </CardContainer>
             )}
