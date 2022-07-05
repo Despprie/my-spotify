@@ -1,6 +1,7 @@
 import { MotionValue } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
+import { roundTo2d } from '~/components/organisms/PlayerSlider/utils';
 import usePlaybackState from '~/hooks/usePlaybackState';
 import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import { spotify } from '~/utils/spotify';
@@ -34,7 +35,12 @@ export const useSetPlayerPosition = () => {
 
 export const usePlaybackProgress = () => {
     const playbackState = usePlaybackState();
+
     const [progress, setProgress] = useState(0);
+    const duration = roundTo2d(playbackState.data ? playbackState.data.item.duration_ms / (1000 * 60) : 0);
+    const passedTime = roundTo2d(
+        playbackState.data && progress > 0 ? ((progress / 100) * playbackState.data.item.duration_ms) / (1000 * 60) : 0
+    );
 
     useEffect(() => {
         if (!playbackState.data) return;
@@ -56,7 +62,7 @@ export const usePlaybackProgress = () => {
         return () => clearTimeout(timer);
     }, [playbackState, progress]);
 
-    return [progress, setProgress] as const;
+    return { progress, setProgress, duration, passedTime };
 };
 
 export const useSyncHandleWithProgress = (

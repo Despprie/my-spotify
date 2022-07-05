@@ -1,5 +1,6 @@
 import { animate, motion, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
+import Typography from '~/components/atoms/Typography';
 import {
     usePlaybackProgress,
     useSetPlayerPosition,
@@ -16,7 +17,7 @@ const PlayerSlider = () => {
     const constraints = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
 
-    const [progress, setProgress] = usePlaybackProgress();
+    const { progress, setProgress, duration, passedTime } = usePlaybackProgress();
     const progressBar = useRef<HTMLDivElement>(null);
     useSyncHandleWithProgress(handleX, progress, progressBar);
 
@@ -50,38 +51,47 @@ const PlayerSlider = () => {
     };
 
     return (
-        <motion.div
-            className='relative my-5 flex h-1 w-full items-center rounded-full bg-gray-500'
-            style={{ background: handleBackground }}
-        >
-            <div ref={progressBar} className='absolute h-2' style={{ left: HANDLE_SIZE / 2, right: HANDLE_SIZE / 2 }} />
-
-            <div ref={constraints} className='w-full'>
-                <motion.div
-                    ref={handle}
-                    drag='x'
-                    dragConstraints={constraints}
-                    dragElastic={0}
-                    dragMomentum={false}
-                    onDrag={updateProgress}
-                    onDragStart={() => setIsDragging(true)}
-                    onDragEnd={() => {
-                        setIsDragging(false);
-                        setPlayerPosition.mutate(progress);
-                    }}
-                    onPointerDown={() => setIsDragging(true)}
-                    onPointerUp={() => {
-                        setIsDragging(false);
-                    }}
-                    animate={{ scale: isDragging ? 1.5 : 1 }}
-                    transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-                    className='relative z-10 aspect-square cursor-pointer rounded-full bg-white'
-                    style={{ scale: isDragging ? 1.5 : 1, width: HANDLE_SIZE, x: handleX }}
+        <div className='my-5'>
+            <motion.div
+                className='relative flex h-1 w-full items-center rounded-full bg-gray-500'
+                style={{ background: handleBackground }}
+            >
+                <div
+                    ref={progressBar}
+                    className='absolute h-2'
+                    style={{ left: HANDLE_SIZE / 2, right: HANDLE_SIZE / 2 }}
                 />
-            </div>
+                <div ref={constraints} className='w-full'>
+                    <motion.div
+                        ref={handle}
+                        drag='x'
+                        dragConstraints={constraints}
+                        dragElastic={0}
+                        dragMomentum={false}
+                        onDrag={updateProgress}
+                        onDragStart={() => setIsDragging(true)}
+                        onDragEnd={() => {
+                            setIsDragging(false);
+                            setPlayerPosition.mutate(progress);
+                        }}
+                        onPointerDown={() => setIsDragging(true)}
+                        onPointerUp={() => {
+                            setIsDragging(false);
+                        }}
+                        animate={{ scale: isDragging ? 1.5 : 1 }}
+                        transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+                        className='relative z-10 aspect-square cursor-pointer rounded-full bg-white'
+                        style={{ scale: isDragging ? 1.5 : 1, width: HANDLE_SIZE, x: handleX }}
+                    />
+                </div>
+                <div className='absolute h-3 w-full' onPointerDown={repositionHandle} />
+            </motion.div>
 
-            <div className='absolute h-3 w-full' onPointerDown={repositionHandle} />
-        </motion.div>
+            <div className='mt-2 flex items-center justify-between'>
+                <Typography title={passedTime.toString().replace('.', ':')} className='text-xs text-gray-500' />
+                <Typography title={duration.toString().replace('.', ':')} className='text-xs text-gray-500' />
+            </div>
+        </div>
     );
 };
 
