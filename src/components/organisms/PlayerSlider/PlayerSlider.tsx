@@ -51,7 +51,7 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
         setProgress(newProgress * 100);
         animate(handleX, newProgress * width, { type: 'spring', bounce: 0 });
 
-        setPlayerPosition.mutate(Math.round(newProgress * duration * 1000 * 60));
+        setPlayerPosition.mutate(Math.round(newProgress * duration));
     };
 
     const onHandleDragEnd = (event: PointerEvent | MouseEvent) => {
@@ -63,7 +63,7 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
         const newProgress = Math.max(0, Math.min(mousePosition / width, 1));
 
         setIsDragging(false);
-        setPlayerPosition.mutate(Math.round(newProgress * duration * 1000 * 60));
+        setPlayerPosition.mutate(Math.round(newProgress * duration));
     };
 
     return (
