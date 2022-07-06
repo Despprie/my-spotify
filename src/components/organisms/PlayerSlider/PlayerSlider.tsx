@@ -7,6 +7,7 @@ import {
     useSetPlayerPosition,
     useSyncHandleWithProgress
 } from '~/components/organisms/PlayerSlider/hooks';
+import { formatTime } from '~/components/organisms/PlayerSlider/utils';
 import { SpotifyPlaybackState } from '~/hooks/usePlaybackState';
 
 type PlayerSliderProps = { playbackState: UseQueryResult<SpotifyPlaybackState, unknown> };
@@ -98,8 +99,8 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
             </motion.div>
 
             <div className='mt-2 flex items-center justify-between'>
-                <Typography title={passedTime.toString().replace('.', ':')} className='text-xs text-gray-500' />
-                <Typography title={duration.toString().replace('.', ':')} className='text-xs text-gray-500' />
+                <Typography title={formatTime(passedTime)} className='text-xs text-gray-500' />
+                <Typography title={formatTime(duration)} className='text-xs text-gray-500' />
             </div>
         </div>
     );
