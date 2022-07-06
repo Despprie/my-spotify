@@ -26,7 +26,7 @@ const Player = () => {
                         <Link href='#'>
                             <Typography
                                 title={playbackState.data.item.name}
-                                className='cursor-pointer truncate text-lg font-medium'
+                                className='w-fit max-w-full cursor-pointer truncate text-lg font-medium'
                             />
                         </Link>
                         <TrackArtists artists={playbackState.data.item.artists} />
