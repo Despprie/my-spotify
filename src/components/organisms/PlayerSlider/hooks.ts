@@ -7,9 +7,11 @@ import useSpotifyTokensStore from '~/store/SpotifyTokens';
 import { spotify } from '~/utils/spotify';
 
 const seekToPosition = async (accessToken: string, position_ms: number) => {
-    const response = await spotify.put<void>(`/me/player/seek?position_ms=${position_ms}`, {
-        headers: { Authorization: `Bearer ${accessToken}` }
-    });
+    const response = await spotify.put<void>(
+        `/me/player/seek?position_ms=${position_ms}`,
+        {},
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+    );
 
     return response.data;
 };
@@ -26,7 +28,7 @@ export const useSetPlayerPosition = () => {
         },
         {
             mutationKey: ['spotify', 'playback-position'],
-            onSuccess: () => queryClient.invalidateQueries(['playback-state'])
+            onSuccess: () => queryClient.invalidateQueries(['spotify', 'playback-state'])
         }
     );
 

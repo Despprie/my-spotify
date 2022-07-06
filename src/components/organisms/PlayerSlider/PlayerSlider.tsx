@@ -27,7 +27,7 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
 
     const setPlayerPosition = useSetPlayerPosition();
 
-    const updateProgress = () => {
+    const onHandleDrag = () => {
         if (!progressBar.current || !handle.current) return;
 
         const handleBounds = handle.current.getBoundingClientRect();
@@ -39,19 +39,30 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
         setProgress(newProgress * 100);
     };
 
-    const repositionHandle = (event: React.PointerEvent<HTMLDivElement>) => {
+    const onSliderClick = (event: React.PointerEvent<HTMLDivElement>) => {
         if (!progressBar.current) return;
 
         const { left, width } = progressBar.current.getBoundingClientRect();
         const mousePosition = event.pageX - left;
 
         const newProgress = Math.max(0, Math.min(mousePosition / width, 1));
-        const newValue = newProgress * 100;
 
-        setProgress(newValue);
+        setProgress(newProgress * 100);
         animate(handleX, newProgress * width, { type: 'spring', bounce: 0 });
 
-        setPlayerPosition.mutate(progress);
+        setPlayerPosition.mutate(Math.round(newProgress * duration * 1000 * 60));
+    };
+
+    const onHandleDragEnd = (event: PointerEvent | MouseEvent) => {
+        if (!progressBar.current) return;
+
+        const { left, width } = progressBar.current.getBoundingClientRect();
+        const mousePosition = event.pageX - left;
+
+        const newProgress = Math.max(0, Math.min(mousePosition / width, 1));
+
+        setIsDragging(false);
+        setPlayerPosition.mutate(Math.round(newProgress * duration * 1000 * 60));
     };
 
     return (
@@ -72,23 +83,18 @@ const PlayerSlider = ({ playbackState }: PlayerSliderProps) => {
                         dragConstraints={constraints}
                         dragElastic={0}
                         dragMomentum={false}
-                        onDrag={updateProgress}
+                        onDrag={onHandleDrag}
                         onDragStart={() => setIsDragging(true)}
-                        onDragEnd={() => {
-                            setIsDragging(false);
-                            setPlayerPosition.mutate(progress);
-                        }}
+                        onDragEnd={onHandleDragEnd}
                         onPointerDown={() => setIsDragging(true)}
-                        onPointerUp={() => {
-                            setIsDragging(false);
-                        }}
+                        onPointerUp={() => setIsDragging(false)}
                         animate={{ scale: isDragging ? 1.5 : 1 }}
                         transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
                         className='relative z-10 aspect-square cursor-pointer rounded-full bg-white'
                         style={{ scale: isDragging ? 1.5 : 1, width: HANDLE_SIZE, x: handleX }}
                     />
                 </div>
-                <div className='absolute h-3 w-full' onPointerDown={repositionHandle} />
+                <div className='absolute h-3 w-full' onPointerDown={onSliderClick} />
             </motion.div>
 
             <div className='mt-2 flex items-center justify-between'>
